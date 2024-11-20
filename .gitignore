@@ -7,7 +7,7 @@ build/
 !**/src/test/**/build/
 
 # 특정 경로에 있는 application.properties 무시
-/application.properties
+**/application.properties
 
 
 ### STS ###
