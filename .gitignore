@@ -5,7 +5,10 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-application.properties
+
+# 특정 경로에 있는 application.properties 무시
+/application.properties
+
 
 ### STS ###
 .apt_generated
