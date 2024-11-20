@@ -2,7 +2,7 @@
 ---
 # project
 - Spring
-  - Gradel.
+  - Gradle.
   - java(jdk17).
   - Spring boot 3.3.5
   - JPA
