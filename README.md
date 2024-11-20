@@ -1,4 +1,5 @@
 # article-comment
+- MVC + JPA + REST API
 ---
 # project
 - Spring
@@ -9,4 +10,4 @@
 - view
   - Mustache
 - DB
-  - H2 -> Postgre    
+  - H2 -> PostgreSQL
