@@ -5,7 +5,7 @@
 - Spring
   - Gradle.
   - java(jdk17).
-  - Spring boot 3.3.5
+  - Spring boot 3.1.0
   - JPA
 - view
   - Mustache
