@@ -10,13 +10,14 @@
     </thead>
     <tbody>
     {{#articleList}}
-    <tr>
-        <th>{{id}}</th>
-        <td><a href="/articles/{{id}}">{{title}}</a></td>
-        <td>{{content}}</td>
-    </tr>
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/articles/{{id}}">{{title}}</a></td>
+            <td>{{content}}</td>
+        </tr>
     {{/articleList}}
     </tbody>
 </table>
+
 <a href="/articles/new" class="btn btn-primary">글 쓰기</a>
 {{>layouts/footer}}

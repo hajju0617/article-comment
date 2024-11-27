@@ -1,5 +1,6 @@
 package com.project.articlecomment.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.articlecomment.dto.ArticleForm;
 import com.project.articlecomment.entity.Article;
 import com.project.articlecomment.repository.ArticleRepository;
@@ -29,7 +30,6 @@ public class ArticleController {
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form) {
         log.info(form.toString());
-
         Article article = form.toEntity();                  // DTO -> Entity 변환
         log.info(article.toString());
 
@@ -39,7 +39,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}")
-    public String how(@PathVariable Long id, Model model) {
+    public String show(@PathVariable Long id, Model model) {
         log.info("id = " + id);
         Article articleEntity = articleRepository.findById(id).orElse(null);
         model.addAttribute("article", articleEntity);
