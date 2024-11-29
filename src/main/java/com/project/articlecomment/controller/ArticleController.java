@@ -28,7 +28,7 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(ArticleForm form) {
+    public String createArticle(ArticleForm form) {         // 새로운 데이터 생성.
         log.info(form.toString());
         Article article = form.toEntity();                  // DTO -> Entity 변환
         log.info(article.toString());
@@ -39,7 +39,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}")
-    public String show(@PathVariable Long id, Model model) {
+    public String show(@PathVariable Long id, Model model) {        // 단일 데이터 조회.
         log.info("id = " + id);
         Article articleEntity = articleRepository.findById(id).orElse(null);
         model.addAttribute("article", articleEntity);
@@ -48,21 +48,21 @@ public class ArticleController {
     }
 
     @GetMapping("/articles")
-    public String index(Model model) {
+    public String index(Model model) {              // 모든 데이터 조회.
         ArrayList<Article> articleEntityList = articleRepository.findAll();
         model.addAttribute("articleList", articleEntityList);     // 모델에 articleEntityList를 articleList 이름으로 등록.
         return "articles/index";
     }
 
     @GetMapping("/articles/{id}/edit")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@PathVariable Long id, Model model) {            // 데이터 수정.
         Article articleEntity = articleRepository.findById(id).orElse(null);
         model.addAttribute("article", articleEntity);
         return "articles/edit";
     }
 
     @PostMapping("/articles/update")
-    public String update(ArticleForm form) {
+    public String update(ArticleForm form) {        // 데이터 수정(리다이렉트).
         log.info(form.toString());
         Article articleEntity = form.toEntity();
         log.info(articleEntity.toString());
@@ -74,7 +74,7 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/{id}/delete")
-    public String delete(@PathVariable Long id, RedirectAttributes rttr) {
+    public String delete(@PathVariable Long id, RedirectAttributes rttr) {      // 데이터 삭제.
         Article target = articleRepository.findById(id).orElse(null);
         log.info(target.toString());
         if (target != null) {
