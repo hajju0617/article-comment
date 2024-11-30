@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service    // 이 클래스를 서비스로 인식해 서비스 객체 생성.
 @Slf4j
@@ -50,5 +53,23 @@ public class ArticleService {
         }
         articleRepository.delete(target);
         return target;
+    }
+
+    @Transactional
+    public List<Article> createArticles(List<ArticleForm> dtos) {
+        List<Article> articleList = dtos.stream().map(dto -> dto.toEntity()).collect(Collectors.toList());
+//        List<Article> articleList = new ArrayList<>();
+//        for (int i = 0; i < dtos.size(); i++) {
+//            ArticleForm dto = dtos.get(i);
+//            Article entity = dto.toEntity();
+//            articleList.add(entity);
+//        }
+        articleList.stream().forEach(article -> articleRepository.save(article));
+//        for (int i = 0; i < articleList.size(); i++) {
+//            Article article = articleList.get(i);
+//            articleRepository.save(article)
+//        }
+        articleRepository.findById(-1L).orElseThrow(() -> new IllegalArgumentException("실패!"));     // 강제로 예외 발생.
+        return articleList;
     }
 }
