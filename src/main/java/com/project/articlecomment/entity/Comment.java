@@ -1,5 +1,7 @@
 package com.project.articlecomment.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.articlecomment.dto.CommentDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +11,7 @@ import lombok.ToString;
 @Entity
 @Getter
 @ToString
-@AllArgsConstructor
+@AllArgsConstructor     // 모든 필드를 매개변수로 갖는 생성자 자동 생성.
 @NoArgsConstructor
 public class Comment {
     @Id
@@ -25,4 +27,21 @@ public class Comment {
 
     @Column
     private String body;
+
+
+
+    public static Comment createComment(CommentDto dto, Article article) {
+        if (dto.getId() != null) {
+            throw new IllegalArgumentException("댓글 생성 실패. 댓글의 id가 없어야 함.");
+        }
+        if (dto.getArticleId() != article.getId()) {
+            throw new IllegalArgumentException("댓글 생성 실패. 게시글의 id가 잘못됐음.");
+        }
+        return new Comment(
+                  dto.getId()
+                , article
+                , dto.getNickname()
+                , dto.getBody()
+        );
+    }
 }

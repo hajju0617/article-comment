@@ -9,7 +9,7 @@ import lombok.ToString;
 
 
 @ToString
-@AllArgsConstructor
+@AllArgsConstructor     // 모든 필드를 매개변수로 갖는 생성자 자동 생성.
 @Getter
 public class ArticleForm {
     private Long id;
