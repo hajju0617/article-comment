@@ -13,7 +13,6 @@ import lombok.ToString;
 @ToString               // 모든 필드를 출력할 수 있는 toString 메서드 자동 생성
 public class CommentDto {
     private Long id;
-    @JsonProperty("article_id")
     private Long articleId;     // 댓글의 부모 id
     private String nickname;
     private String body;        // 댓글 본문.
