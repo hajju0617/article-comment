@@ -17,6 +17,7 @@ public class CommentDto {
     private String nickname;
     private String body;        // 댓글 본문.
 
+
     // static -> 정적 메서드. 즉, 객체 생성없이 호출 가능한 메서드.
     public static CommentDto createCommentDto(Comment comment) {        // 이러한 방식으로 객체를 만드는 메서드를 생성메서드라 함.
         return new CommentDto(          // CommentDto 생성자 호출

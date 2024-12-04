@@ -2,8 +2,11 @@ package com.project.articlecomment.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.articlecomment.dto.ArticleForm;
+import com.project.articlecomment.dto.CommentDto;
 import com.project.articlecomment.entity.Article;
 import com.project.articlecomment.repository.ArticleRepository;
+import com.project.articlecomment.repository.CommentRepository;
+import com.project.articlecomment.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,8 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/articles/new")
     public String newArticleForm() {
@@ -42,8 +47,9 @@ public class ArticleController {
     public String show(@PathVariable Long id, Model model) {        // 단일 데이터 조회.
         log.info("id = " + id);
         Article articleEntity = articleRepository.findById(id).orElse(null);
-        model.addAttribute("article", articleEntity);
-
+        List<CommentDto> commentDtos = commentService.comments(id);     // 댓글 목록 조회.
+        model.addAttribute("article", articleEntity);       // 모델에 articleEntity를 article 이름으로 등록.
+        model.addAttribute("commentDtos", commentDtos);     // 모델에 commentDtos를 commentDtos 이름으로 등록.
         return "articles/show";
     }
 
@@ -79,7 +85,8 @@ public class ArticleController {
         log.info(target.toString());
         if (target != null) {
             articleRepository.delete(target);
-            rttr.addFlashAttribute("msg", "삭제 완료.");
+            rttr.addFlashAttribute("msg", "삭제 완료.");    // 넘겨주려는 키 문자열(msg), 넘겨 주려는 값 객체(삭제 완료.)
+            // (리다이렉트 시점에) 한번 쓰고 사라지는 휘발성 데이터 등록.
         }
         return "redirect:/articles";
     }
