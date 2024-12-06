@@ -1,4 +1,5 @@
 # article-comment
+- 공부한 내용 정리 : <a href="https://velog.io/@hajju/series/Spring-Boot-articlecomment">article-comment</a>
 - MVC + JPA + REST API
 ---
 # project
