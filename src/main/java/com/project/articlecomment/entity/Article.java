@@ -23,7 +23,7 @@ public class Article {
     @Column
     private String content;
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)    // CascadeType.REMOVE or orphanRemoval = true 사용하면됨.
     @ToString.Exclude // 순환 참조 방지
     private List<Comment> comments = new ArrayList<>();
 
