@@ -12,3 +12,5 @@
   - Mustache
 - DB
   - H2 -> PostgreSQL
+- IDE
+  - Intellij
