@@ -13,6 +13,7 @@
   - java(jdk17).
   - Spring boot 3.1.0
   - JPA
+  - JUnit5
 - view
   - Mustache
   - bootstrap
